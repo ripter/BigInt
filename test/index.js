@@ -2,6 +2,33 @@
 require('should');
 var BigInt = require('../js/BigInt');
 
+describe('BigInt defaults', function() {
+	var num = null;
+	var result = null;
+
+	it ('should default to a value of 0', function() {
+		num = new BigInt();
+
+		result = num.toString();
+		result.should.equal('0');
+	});
+
+	it ('should take an int', function() {
+		num = new BigInt(700);
+
+		result = num.toString();
+		result.should.equal('700');
+	});
+
+	it ('should take a BigInt', function() {
+		num = new BigInt(700);
+		num = new BigInt(num);
+
+		result = num.toString();
+		result.should.equal('700');
+	});
+});
+
 describe('BigInt basic Math', function() {
 	var num = null;
 	var result = null;

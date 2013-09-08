@@ -11,7 +11,7 @@ function numberToArray(num) {
 		});
 }
 
-// Adds 1 to the value in a number array at index
+// Adds 1 to the digit in this array at index
 // index is optional. Default to the right-most value
 // Example: [7, 4, 9] becomes [7, 5, 0]
 function addOne(nums, index) {
@@ -42,7 +42,7 @@ function addOne(nums, index) {
 	return nums;
 }
 
-// Subtracts 1 from the value in the number array at index
+// Subtracts 1 from the digit in the array at index
 // index is optional. Default to the right-most value
 // Example: [7, 4, 0] becomes [7, 3, 9]
 function subtractOne(nums, index) {
@@ -55,11 +55,11 @@ function subtractOne(nums, index) {
 
 	lastNum = nums[index];
 
+	// if the left-most digit is 1, then we can remove it
 	if (index === 0 && lastNum === 1) {
 		nums.shift();
 		return nums;
 	}
-
 
 	if (lastNum > 0) {
 		nums[index] -= 1;
@@ -73,28 +73,33 @@ function subtractOne(nums, index) {
 	return nums;
 }
 
+// BigInt constructor
+// num is starting int
 function BigInt(num) {
-	this.vals = [];
+	this.digits = [];
 	this.isNegative = false;
 
+	if (typeof num === 'undefined') {
+		num = 0;
+	}
 	if (typeof num === 'string') {
 		num = parseInt(num, 10);
 	}
 
-	this.vals = numberToArray(num);
+	this.digits = numberToArray(num);
 }
 
 BigInt.prototype.toString = function() {
-	return this.vals.join('');
+	return this.digits.join('');
 }
 
 BigInt.prototype.addOne = function() {
-	this.vals = addOne(this.vals);
+	this.digits = addOne(this.digits);
 	return this.toString();
 }
 
 BigInt.prototype.subtractOne = function() {
-	this.vals = subtractOne(this.vals);
+	this.digits = subtractOne(this.digits);
 	return this.toString();
 }
 

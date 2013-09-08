@@ -9,6 +9,8 @@ run with `./run.sh`
 
 stop with `./stop.sh`
 
-test with `./mocha tests/index.js`
+test with `npm test`
+
+
 
 
