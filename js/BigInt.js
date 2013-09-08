@@ -1,12 +1,38 @@
 (function() {
 'use strict';
 
+// Convert a Number to an array with each element representing a digit.
+// Example: 749 becomes [7, 4, 9]
 function numberToArray(num) {
 	return ('' + num).split(/(\d)/).filter(function(item) {
 			return item !== '';
 		}).map(function(item) {
 			return parseInt(item, 10);
 		});
+}
+
+// Adds 1 to the value in a number array at index
+// index is optional. Default to the right-most value
+// Example: [7, 4, 9] becomes [7, 5, 0]
+function addOne(nums, index) {
+	var lastNum;
+
+	if (typeof index === 'undefined') {
+		index = nums.length-1;
+	}
+
+	lastNum = nums[index];
+
+	if (lastNum < 9) {
+		nums[index] += 1;
+	}
+
+	if (lastNum === 9) {
+		nums[index] = 0;
+		nums = addOne(nums, index-1);
+	}
+
+	return nums;
 }
 
 function BigInt(num) {
@@ -25,21 +51,17 @@ BigInt.prototype.toString = function() {
 }
 
 BigInt.prototype.addOne = function() {
-	var vals = this.vals
-		, i = vals.length -1
-		, lastNum = vals[i]
-		;
-
-	if (lastNum < 9) {
-		vals[i] += 1;
-	}
-
-	this.vals = vals;
+	this.vals = addOne(this.vals);
 	return this.toString();
 }
 
 
-window.BigInt = BigInt;
+if (typeof window !== 'undefined') {
+	window.BigInt = BigInt;
+}
+if (typeof module !== 'undefined') {
+	module.exports = BigInt;
+}
 return BigInt;
 
 })();

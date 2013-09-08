@@ -1,0 +1,19 @@
+{
+  "name": "BigInt",
+  "version": "0.0.0",
+  "description": "BigInt",
+  "main": "index.js",
+  "scripts": {
+    "test": "./mocha tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ripter/BigInt.git"
+  },
+  "author": "Chris Richards",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "~1.12.1",
+    "should": "~1.2.2"
+  }
+}
