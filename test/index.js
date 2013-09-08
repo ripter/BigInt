@@ -41,4 +41,40 @@ describe('BigInt basic Math', function() {
 		result = num.toString();
 		result.should.equal('10');
 	});
+
+	it ('should subtractOne', function() {
+		num.subtractOne();
+
+		result = num.toString();
+		result.should.equal('745');
+	});
+
+	it ('should roll backwars', function() {
+		num.subtractOne(); // 745
+		num.subtractOne(); // 744
+		num.subtractOne(); // 743
+		num.subtractOne(); // 742
+		num.subtractOne(); // 741
+		num.subtractOne(); // 740
+		num.subtractOne(); // 739
+
+		result = num.toString();
+		result.should.equal('739');
+	});
+
+	it ('should handle 10 - 1', function() {
+		num = new BigInt(10);
+		num.subtractOne();
+
+		result = num.toString();
+		result.should.equal('9');
+	});
+
+	it ('should handle 30 - 1', function() {
+		num = new BigInt(30);
+		num.subtractOne();
+
+		result = num.toString();
+		result.should.equal('29');
+	});
 });

@@ -42,6 +42,37 @@ function addOne(nums, index) {
 	return nums;
 }
 
+// Subtracts 1 from the value in the number array at index
+// index is optional. Default to the right-most value
+// Example: [7, 4, 0] becomes [7, 3, 9]
+function subtractOne(nums, index) {
+	var lastNum;
+
+	// if no index, assume the right-most value
+	if (typeof index === 'undefined') {
+		index = nums.length-1;
+	}
+
+	lastNum = nums[index];
+
+	if (index === 0 && lastNum === 1) {
+		nums.shift();
+		return nums;
+	}
+
+
+	if (lastNum > 0) {
+		nums[index] -= 1;
+	}
+
+	if (lastNum === 0) {
+		nums[index] = 9;
+		nums = subtractOne(nums, index-1);
+	}
+
+	return nums;
+}
+
 function BigInt(num) {
 	this.vals = [];
 	this.isNegative = false;
@@ -59,6 +90,11 @@ BigInt.prototype.toString = function() {
 
 BigInt.prototype.addOne = function() {
 	this.vals = addOne(this.vals);
+	return this.toString();
+}
+
+BigInt.prototype.subtractOne = function() {
+	this.vals = subtractOne(this.vals);
 	return this.toString();
 }
 
