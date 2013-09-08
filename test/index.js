@@ -40,12 +40,6 @@ describe('BigInt basic Math', function() {
 			result = null;
 		});
 
-		it ('should initalize with a number', function() {
-			result = num.toString();
-
-			result.should.equal('746');
-		});
-
 		it ('should addOne under 9', function() {
 			num.addOne();
 			result = num.toString();
@@ -69,6 +63,20 @@ describe('BigInt basic Math', function() {
 
 			result = num.toString();
 			result.should.equal('10');
+		});
+
+		it ('should add without carry', function() {
+			num.add(3);
+
+			result = num.toString();
+			result.should.equal('749');
+		});
+
+		it ('should add with carry', function() {
+			num.add(100);
+
+			result = num.toString();
+			result.should.equal('846');
 		});
 
 		it ('should subtractOne', function() {
@@ -106,6 +114,21 @@ describe('BigInt basic Math', function() {
 			result = num.toString();
 			result.should.equal('29');
 		});
+
+		it ('should subtract without carry', function() {
+			num.subtract(3);
+
+			result = num.toString();
+			result.should.equal('743');
+		});
+
+		it ('should subtract with carry', function() {
+			num.subtract(100);
+
+			result = num.toString();
+			result.should.equal('646');
+		});
+
 	});
 
 	describe('Big INTs', function() {
@@ -120,11 +143,25 @@ describe('BigInt basic Math', function() {
 			result.should.equal('9007199254740993');
 		});
 
+		it ('should add', function() {
+			num.add( new BigInt(100) );
+
+			result = num.toString();
+			result.should.equal('9007199254741092');
+		});
+
 		it ('should subtractOne', function() {
 			num.subtractOne();
 
 			result = num.toString();
 			result.should.equal('9007199254740991');
+		});
+
+		it ('should subtract', function() {
+			num.subtract( new BigInt(100) );
+
+			result = num.toString();
+			result.should.equal('9007199254740892');
 		});
 	});
 });

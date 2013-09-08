@@ -98,8 +98,35 @@ BigInt.prototype.addOne = function() {
 	return this.toString();
 }
 
+BigInt.prototype.add = function(num) {
+	var isBigInt = num instanceof BigInt
+		;
+
+	while(isBigInt ? num.toString() :  num) {
+		this.digits = addOne(this.digits);
+
+		isBigInt ? num.subtractOne(): num--;
+	}
+
+	return this.toString();
+}
+
 BigInt.prototype.subtractOne = function() {
 	this.digits = subtractOne(this.digits);
+
+	return this.toString();
+}
+
+BigInt.prototype.subtract = function(num) {
+	var isBigInt = num instanceof BigInt
+		;
+
+	while(isBigInt ? num.toString() :  num) {
+		this.digits = subtractOne(this.digits);
+
+		isBigInt ? num.subtractOne(): num--;
+	}
+
 	return this.toString();
 }
 
