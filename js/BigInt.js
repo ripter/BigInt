@@ -17,8 +17,15 @@ function numberToArray(num) {
 function addOne(nums, index) {
 	var lastNum;
 
+	// if no index, assume the right-most value
 	if (typeof index === 'undefined') {
 		index = nums.length-1;
+	}
+
+	// If index is < 0, add room for a new digit.
+	if (index < 0) {
+		nums.unshift(0);
+		index = 0;
 	}
 
 	lastNum = nums[index];

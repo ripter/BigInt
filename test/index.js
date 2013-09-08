@@ -33,4 +33,12 @@ describe('BigInt basic Math', function() {
 		result = num.toString();
 		result.should.equal('750');
 	});
+
+	it ('should handle 9 + 1', function() {
+		num = new BigInt(9);
+		num.addOne();
+
+		result = num.toString();
+		result.should.equal('10');
+	});
 });
